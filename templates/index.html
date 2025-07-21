@@ -1,13 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DM Assistant</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-  <!-- Font & Basic Style Reset -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <style>
+  body {
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #0a0a1f, #000814);
+    color: #d6faff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #00f0ff, 0 0 20px #00e0ff88;
+    text-align: center;
+  }
+
+  form {
+    background: rgba(0, 20, 40, 0.65);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00f0ff33;
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 0 20px #00f0ff44;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  input[name="prompt"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #00f0ff55;
+    background-color: #081b2f;
+    color: #d6faff;
+    margin-bottom: 10px;
+    box-shadow: inset 0 0 5px #00f0ff55;
+  }
+
+  button {
+    padding: 10px 18px;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(to right, #00f0ff, #00c3ff);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 12px #00f0ff88;
+    transition: background 0.3s ease, transform 0.2s;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  button:hover {
+    background: linear-gradient(to right, #00c3ff, #00f0ff);
+    transform: scale(1.05);
+  }
+
+  h2 {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: #00f0ff;
+    text-shadow: 0 0 5px #00f0ffaa;
+  }
+
+  pre {
+    margin-top: 10px;
+    background: #081b2f;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.95rem;
+    color: #d6faff;
+    box-shadow: inset 0 0 10px #00f0ff22;
+    max-width: 90vw;
+    width: 600px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: hidden;
+  }
+
+  /* 📱 Mobile Adjustments */
   @media (max-width: 480px) {
     h1 {
       font-size: 2rem;
@@ -15,123 +102,13 @@
 
     form {
       padding: 15px;
+      flex-direction: column;
     }
 
+    input[name="prompt"],
     button {
       width: 100%;
-      margin-top: 10px;
+      margin: 5px 0;
     }
   }
-
-  input[name="prompt"] {
-    width: 100%
-    max-width: 400px;
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-}
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at top, #0a0a1f, #000814);
-      color: #d6faff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #00f0ff, 0 0 20px #00e0ff88;
-    }
-
-    form {
-      background: rgba(0, 20, 40, 0.65);
-      backdrop-filter: blur(10px);
-      border: 1px solid #00f0ff33;
-      border-radius: 15px;
-      padding: 20px 30px;
-      box-shadow: 0 0 20px #00f0ff44;
-    }
-
-    input[name="prompt"] {
-      width: 400px;
-      padding: 10px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #00f0ff55;
-      background-color: #081b2f;
-      color: #d6faff;
-      margin-right: 10px;
-      box-shadow: inset 0 0 5px #00f0ff55;
-    }
-
-    button {
-      padding: 10px 18px;
-      font-size: 1rem;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(to right, #00f0ff, #00c3ff);
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 0 12px #00f0ff88;
-      transition: background 0.3s ease, transform 0.2s;
-    }
-
-    button:hover {
-      background: linear-gradient(to right, #00c3ff, #00f0ff);
-      transform: scale(1.05);
-    }
-
-    h2 {
-      margin-top: 30px;
-      font-size: 1.5rem;
-      color: #00f0ff;
-      text-shadow: 0 0 5px #00f0ffaa;
-    }
-
-    pre {
-  margin-top: 10px;
-  background: #081b2f;
-  padding: 15px;
-  border-radius: 10px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.95rem;
-  color: #d6faff;
-  box-shadow: inset 0 0 10px #00f0ff22;
-  max-width: 90vw;              /* Make sure it's never wider than viewport */
-  width: 600px;                 /* Nice readable width */
-  white-space: pre-wrap;        /* Wrap long lines */
-  word-wrap: break-word;        /* Break long words if needed */
-  overflow-x: hidden;           /* No horizontal scroll */
-}
-  </style>
-</head>
-<body>
-
-  <h1>Tabletop Enemy Generator</h1>
-
-  <form method="post">
-    <input name="prompt" placeholder="Enter your prompt..." />
-    <button type="submit">Generate</button>
-  </form>
-
-  {% if result %}
-    <h2>Output:</h2>
-    <pre>{{ result }}</pre>
-  {% endif %}
-
-</body>
-</html>
+</style>
